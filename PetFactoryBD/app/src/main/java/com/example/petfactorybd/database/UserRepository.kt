@@ -17,4 +17,13 @@ class UserRepository(private val userDao: UserDao) {
     suspend fun isUserExists(name: String): Boolean {
         return userDao.getUserByName(name) != null
     }
+
+    suspend fun deleteUserByName(name: String, password: String) {
+        userDao.deleteUserByName(name, password)
+    }
+
+    //ALL USER
+    suspend fun getAllUsers(): List<User> {
+        return userDao.getAllUsers()
+    }
 }

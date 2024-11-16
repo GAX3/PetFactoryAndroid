@@ -32,9 +32,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnHome.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.storeFragment)
+        binding.btnConfig.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.configurationFragment)
         }
+
+
     }
 
     override fun onDestroyView() {

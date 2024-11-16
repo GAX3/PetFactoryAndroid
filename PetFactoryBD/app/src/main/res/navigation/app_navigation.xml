@@ -32,4 +32,9 @@
         android:id="@+id/createUserFragment"
         android:name="com.example.petfactorybd.fragments.login.CreateUserFragment"
         tools:layout="@layout/fragment_create_user" />
+
+    <fragment
+        android:id="@+id/configurationFragment"
+        android:name="com.example.petfactorybd.fragments.ConfigurationFragment"
+        tools:layout="@layout/fragment_configuration" />
 </navigation>

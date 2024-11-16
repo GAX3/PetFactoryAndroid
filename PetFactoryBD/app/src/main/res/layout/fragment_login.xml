@@ -65,12 +65,11 @@
         android:gravity="center"/>
 
     <!-- Floating Action Button -->
-    <androidx.appcompat.widget.AppCompatImageButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_input_add"
-        android:contentDescription="Floating Action Button"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
         android:backgroundTint="?android:attr/colorAccent"

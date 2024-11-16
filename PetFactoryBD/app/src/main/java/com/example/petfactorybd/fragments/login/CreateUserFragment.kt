@@ -44,7 +44,7 @@ class CreateUserFragment : Fragment() {
 
         binding.btnCreateUser.setOnClickListener {
             val user = binding.username.text.toString().lowercase()
-            val password = binding.username.text.toString().lowercase()
+            val password = binding.password.text.toString().lowercase()
 
             if (user.toString() == "" || password.toString() == ""){
                 Toast.makeText(requireContext(), "Campos incompletos", Toast.LENGTH_SHORT).show()

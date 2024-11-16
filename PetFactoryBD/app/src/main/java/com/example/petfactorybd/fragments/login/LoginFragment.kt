@@ -46,16 +46,28 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginButton.setOnClickListener {
-            val user = binding.username.text.toString().lowercase()
+            val username = binding.username.text.toString().lowercase()
             val password = binding.username.text.toString().lowercase()
 
             // Attempt login
-            viewModel.loginUser(user, password) { user ->
+            viewModel.loginUser(username, password) { user ->
                 if (user != null) {
                     Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show()
                     view.findNavController().navigate(R.id.homeFragment)
                 } else {
                     Toast.makeText(requireContext(), "Invalid credentials!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        binding.forgotPassword.setOnClickListener {
+            viewModel.fetchAllUsers { users ->
+                if (users.isNotEmpty()) {
+                    users.forEach { user ->
+                        println(user.toString())
+                    }
+                } else {
+                    println("No users found.")
                 }
             }
         }
