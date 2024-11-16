@@ -9,11 +9,27 @@
         android:name="com.example.petfactorybd.fragments.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_storeFragment"
+            app:destination="@id/storeFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/storeFragment"
-        android:name="com.example.app.DetailsFragment"
-        android:label="Details"
-        tools:layout="@layout/fragment_details" />
+        android:name="com.example.petfactorybd.fragments.StoreFragment"
+        tools:layout="@layout/fragment_store" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.petfactorybd.fragments.login.LoginFragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_createUserFragment"
+            app:destination="@id/createUserFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createUserFragment"
+        android:name="com.example.petfactorybd.fragments.login.CreateUserFragment"
+        tools:layout="@layout/fragment_create_user" />
 </navigation>
