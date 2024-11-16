@@ -37,10 +37,10 @@
 
     <!-- Login Button -->
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/btnCreateUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Create User"
         android:background="?android:attr/colorAccent"
         android:textColor="@android:color/white"/>
 </LinearLayout>

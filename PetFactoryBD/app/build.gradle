@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
+apply plugin: 'kotlin-kapt'
+
 android {
     namespace 'com.example.petfactorybd'
     compileSdk 35
@@ -33,7 +35,14 @@ android {
     buildFeatures{
         viewBinding true
     }
+    buildscript {
+        repositories {
+            maven {
+                url = uri("https://plugins.gradle.org/m2/")
+            }
+        }
 }
+    }
 
 dependencies {
 
@@ -52,5 +61,11 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7" // Adjust version as needed
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.8.7" // For LiveData if you plan to use it
+
+    //ROOM
+    implementation 'androidx.room:room-runtime:2.6.1'
+    kapt 'androidx.room:room-compiler:2.6.1'
+    implementation "androidx.room:room-ktx:2.5.1" // Replace with the latest version
+
 
 }

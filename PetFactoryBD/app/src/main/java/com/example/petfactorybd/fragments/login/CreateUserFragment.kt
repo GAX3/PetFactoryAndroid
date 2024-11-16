@@ -5,19 +5,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.room.Room
 import com.example.petfactorybd.R
+import com.example.petfactorybd.database.AppDatabase
+import com.example.petfactorybd.database.UserRepository
 import com.example.petfactorybd.databinding.FragmentCreateUserBinding
 import com.example.petfactorybd.databinding.FragmentLoginBinding
+import com.example.petfactorybd.viewmodel.UserViewModel
 
 class CreateUserFragment : Fragment() {
 
     private var _binding: FragmentCreateUserBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    private val database by lazy {
+        Room.databaseBuilder(requireActivity(), AppDatabase::class.java, "user_db").build()
     }
+    private val userDao by lazy { database.userDao() }
+    private val repository by lazy { UserRepository(userDao) }
+    private val viewModel by lazy { UserViewModel(repository) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +38,27 @@ class CreateUserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.root.setOnClickListener {
 
+
+
+
+        binding.btnCreateUser.setOnClickListener {
+            val user = binding.username.text.toString().lowercase()
+            val password = binding.username.text.toString().lowercase()
+
+            if (user.toString() == "" || password.toString() == ""){
+                Toast.makeText(requireContext(), "Campos incompletos", Toast.LENGTH_SHORT).show()
+            }else{
+                viewModel.registerUser(user.toString(), password.toString()) { success ->
+                    if (success) {
+                        Toast.makeText(requireContext(), "User registered successfully!", Toast.LENGTH_SHORT).show()
+                        binding.username.text.clear()
+                        binding.password.text.clear()
+                    } else {
+                        Toast.makeText(requireContext(), "User already exists!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
     }
 
