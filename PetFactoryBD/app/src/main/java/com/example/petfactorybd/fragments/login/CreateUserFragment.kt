@@ -26,8 +26,12 @@ class CreateUserFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentCreateUserBinding.inflate(inflater, container, false)
         return binding.root
+    }
 
-        binding.txtCreate.setOnClickListener {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.root.setOnClickListener {
 
         }
     }
