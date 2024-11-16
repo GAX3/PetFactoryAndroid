@@ -9,14 +9,14 @@ import kotlinx.coroutines.launch
 
 class UserViewModel(private val repository: UserRepository) : ViewModel() {
 
+    var currentUser: String = ""
+
     fun registerUser(name: String, password: String, callback: (Boolean) -> Unit) {
         viewModelScope.launch {
             val exists = repository.isUserExists(name)
             if (exists) {
                 callback(false) // User already exists
             } else {
-                Log.i("LOGGG", name.toString())
-                Log.i("LOGGG", password.toString())
                 repository.insertUser(User(name = name, password = password))
                 callback(true) // User registered successfully
             }
@@ -24,9 +24,9 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     fun loginUser(name: String, password: String, callback: (User?) -> Unit) {
+        Log.i("ViewModel", "${name}, ${password}")
         viewModelScope.launch {
             val user = repository.loginUser(name, password)
-            Log.i("LOGGG U", user.toString())
             callback(user)
         }
     }

@@ -1,7 +1,10 @@
 package com.example.petfactorybd
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 
-class AppViewModel : ViewModel() {
-    var doLogin: Boolean = false
+
+class AppViewModel(application: Application) : AndroidViewModel(application) {
+    var data = MutableLiveData<Int>()
 }

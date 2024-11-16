@@ -1,11 +1,13 @@
 package com.example.petfactorybd.fragments.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.room.Room
@@ -29,6 +31,8 @@ class LoginFragment : Fragment() {
     private val repository by lazy { UserRepository(userDao) }
     private val viewModel by lazy { UserViewModel(repository) }
 
+    private val model: AppViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,12 +51,13 @@ class LoginFragment : Fragment() {
 
         binding.loginButton.setOnClickListener {
             val username = binding.username.text.toString().lowercase()
-            val password = binding.username.text.toString().lowercase()
+            val password = binding.password.text.toString().lowercase()
 
             // Attempt login
             viewModel.loginUser(username, password) { user ->
                 if (user != null) {
                     Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show()
+                    model.data.value = user.id
                     view.findNavController().navigate(R.id.homeFragment)
                 } else {
                     Toast.makeText(requireContext(), "Invalid credentials!", Toast.LENGTH_SHORT).show()
