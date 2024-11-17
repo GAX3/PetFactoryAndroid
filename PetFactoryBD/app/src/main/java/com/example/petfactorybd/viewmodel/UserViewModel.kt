@@ -1,6 +1,7 @@
 package com.example.petfactorybd.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petfactorybd.database.UserRepository
@@ -50,6 +51,26 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             val user = repository.getData(id)
             callback(user)
+        }
+    }
+
+    //LIVEDATA
+    fun getUserById(userId: Int): LiveData<User> {
+        return repository.getUserById(userId)
+    }
+
+    //getData
+    fun updateLevel(id: Int, level: Int) {
+        viewModelScope.launch {
+            repository.updateLevel(id, level)
+
+        }
+    }
+
+    //updateCoins
+    fun updateCoins(userId: Int, newCoins: Int) {
+        viewModelScope.launch {
+            repository.updateCoins(userId, newCoins)
         }
     }
 }

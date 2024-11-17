@@ -1,6 +1,7 @@
 package com.example.petfactorybd.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -60,6 +61,41 @@ class HomeFragment : Fragment() {
             binding.monedas.text = user.coins.toString()
         }
 
+        binding.btnPlay.setOnClickListener {
+
+        }
+
+        //UPDATE COINS + 10
+        binding.btnCoins.setOnClickListener {
+            viewModel.getData(model.data.value!!){ user ->
+                val newCoins = user!!.coins + 10
+                viewModel.updateCoins(model.data.value!!.toInt(), newCoins)
+            }
+        }
+
+        // Assuming you have initialized ViewModel using ViewModelProvider
+        viewModel.getUserById(model.data.value!!.toInt()).observe(requireActivity()) { updatedUser ->
+            // Update the views with the updated user details
+            binding.nivel.text = updatedUser!!.level.toString()
+            binding.monedas.text = updatedUser.coins.toString()
+        }
+
+
+        binding.nivel.setOnClickListener {
+            if(!model.showLevel){
+                viewModel.getData(model.data.value!!){ user ->
+                    val div = user!!.level / 10
+                    val integerPart = div.toInt()
+                    val number = integerPart + 1
+                    binding.nivel.text = number.toString()
+                }
+            }else{
+                viewModel.getData(model.data.value!!){ user ->
+                    binding.nivel.text = "${user!!.level} / 10"
+                }
+            }
+            model.showLevel = !model.showLevel
+        }
     }
 
     override fun onDestroyView() {

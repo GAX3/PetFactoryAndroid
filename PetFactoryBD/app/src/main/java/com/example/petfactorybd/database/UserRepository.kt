@@ -1,5 +1,6 @@
 package com.example.petfactorybd.database
 
+import androidx.lifecycle.LiveData
 import com.example.petfactorybd.database.daos.UserDao
 import com.example.petfactorybd.database.entities.User
 
@@ -31,5 +32,19 @@ class UserRepository(private val userDao: UserDao) {
     suspend fun getData(id: Int): User? {
         return userDao.getData(id)
     }
+
+    //LIVEDATA
+    fun getUserById(userId: Int): LiveData<User> {
+        return userDao.getUserById(userId)
+    }
+
+    suspend fun updateLevel(id: Int, level: Int) {
+        return userDao.updateLevel(id, level)
+    }
+
+    suspend fun updateCoins(userId: Int, newCoins: Int) {
+        userDao.updateCoins(userId, newCoins)
+    }
+
 
 }

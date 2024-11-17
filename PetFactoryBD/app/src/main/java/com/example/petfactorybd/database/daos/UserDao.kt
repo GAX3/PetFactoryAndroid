@@ -1,8 +1,10 @@
 package com.example.petfactorybd.database.daos
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.petfactorybd.database.entities.User
 
 @Dao
@@ -26,5 +28,17 @@ interface UserDao {
 
     @Query("SELECT * FROM users WHERE id = :id")
     suspend fun getData(id: Int): User?
+
+    @Query("SELECT * FROM users WHERE id = :userId")
+    fun getUserById(userId: Int): LiveData<User>
+
+    //UPDATE LEVEL
+    @Query("UPDATE users SET level = :newLevel WHERE id = :id")
+    suspend fun updateLevel(id: Int, newLevel: Int)
+
+    //UPDATE COINS
+    @Query("UPDATE users SET coins = :newCoins WHERE id = :userId")
+    suspend fun updateCoins(userId: Int, newCoins: Int)
+
 
 }
