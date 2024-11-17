@@ -17,6 +17,7 @@ import com.example.petfactorybd.AppViewModel
 import com.example.petfactorybd.R
 import com.example.petfactorybd.database.AppDatabase
 import com.example.petfactorybd.database.UserRepository
+import com.example.petfactorybd.database.entities.User
 import com.example.petfactorybd.databinding.FragmentHomeBinding
 import com.example.petfactorybd.viewmodel.UserViewModel
 
@@ -53,6 +54,11 @@ class HomeFragment : Fragment() {
         }
 
         Toast.makeText(requireContext(), model.data.value.toString(), Toast.LENGTH_SHORT).show()
+
+        viewModel.getData(model.data.value!!){ user ->
+            binding.nivel.text = user!!.level.toString()
+            binding.monedas.text = user.coins.toString()
+        }
 
     }
 

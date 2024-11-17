@@ -17,7 +17,7 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
             if (exists) {
                 callback(false) // User already exists
             } else {
-                repository.insertUser(User(name = name, password = password))
+                repository.insertUser(User(name = name, password = password, level = 0, coins = 0))
                 callback(true) // User registered successfully
             }
         }
@@ -42,6 +42,14 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             val users = repository.getAllUsers()
             callback(users)
+        }
+    }
+
+    //getData
+    fun getData(id: Int, callback: (User?) -> Unit) {
+        viewModelScope.launch {
+            val user = repository.getData(id)
+            callback(user)
         }
     }
 }
