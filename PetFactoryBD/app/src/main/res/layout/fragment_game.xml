@@ -1,0 +1,89 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_area"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF8DC">
+
+    <TextView
+        android:id="@+id/txtPoints"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Puntos: 0" />
+
+    <TextView
+        android:id="@+id/txtTime"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:textSize="20dp"
+        android:layout_gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvResults"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginHorizontal="20dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="192dp"
+            android:layout_height="192dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:src="@drawable/coins"
+            android:layout_marginBottom="80dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:src="@drawable/coins"
+            android:text="Felicidades"
+            android:textSize="25sp"
+             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:src="@drawable/coins"
+            android:text="Has obtenido "
+            android:textSize="20sp"
+            android:layout_marginTop="40dp" />
+
+        <TextView
+            android:id="@+id/txtCoinsEarned"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:src="@drawable/coins"
+            tools:text="30"
+            android:textSize="35sp"
+            android:layout_marginTop="75dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:src="@drawable/coins"
+            android:text="Monedas"
+            android:textSize="20sp"
+            android:layout_marginTop="100dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEndGame"
+            android:text="FIN DEL JUEGO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_marginTop="140dp" />
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>

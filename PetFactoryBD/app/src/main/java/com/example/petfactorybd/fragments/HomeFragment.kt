@@ -54,15 +54,15 @@ class HomeFragment : Fragment() {
             view.findNavController().navigate(R.id.configurationFragment)
         }
 
-        Toast.makeText(requireContext(), model.data.value.toString(), Toast.LENGTH_SHORT).show()
+        //Toast.makeText(requireContext(), model.data.value.toString(), Toast.LENGTH_SHORT).show()
 
         viewModel.getData(model.data.value!!){ user ->
             binding.nivel.text = user!!.level.toString()
             binding.monedas.text = user.coins.toString()
         }
 
-        binding.btnPlay.setOnClickListener {
-
+        binding.btnPlay.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.gameFragment)
         }
 
         //UPDATE COINS + 10

@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_homeFragment_to_storeFragment"
             app:destination="@id/storeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
     </fragment>
 
     <fragment
@@ -37,4 +40,9 @@
         android:id="@+id/configurationFragment"
         android:name="com.example.petfactorybd.fragments.ConfigurationFragment"
         tools:layout="@layout/fragment_configuration" />
+
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.example.petfactorybd.fragments.game.GameFragment"
+        tools:layout="@layout/fragment_game" />
 </navigation>
