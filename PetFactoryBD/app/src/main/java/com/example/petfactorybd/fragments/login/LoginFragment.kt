@@ -54,7 +54,6 @@ class LoginFragment : Fragment() {
             // Attempt login
             viewModel.loginUser(username, password) { user ->
                 if (user != null) {
-                    Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show()
                     model.data.value = user.id
                     view.findNavController().navigate(R.id.homeFragment)
                 } else {

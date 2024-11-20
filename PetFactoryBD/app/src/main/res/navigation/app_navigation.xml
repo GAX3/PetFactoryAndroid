@@ -45,4 +45,9 @@
         android:id="@+id/gameFragment"
         android:name="com.example.petfactorybd.fragments.game.GameFragment"
         tools:layout="@layout/fragment_game" />
+
+    <fragment
+        android:id="@+id/storeFragment"
+        android:name="com.example.petfactorybd.fragments.StoreFragment"
+        tools:layout="@layout/fragment_store" />
 </navigation>

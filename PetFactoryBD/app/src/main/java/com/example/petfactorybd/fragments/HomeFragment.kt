@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.room.Room
+import com.bumptech.glide.Glide
 import com.example.petfactorybd.AppViewModel
 import com.example.petfactorybd.R
 import com.example.petfactorybd.database.AppDatabase
@@ -44,6 +45,10 @@ class HomeFragment : Fragment() {
 
         binding.btnConfig.setOnClickListener { view ->
             view.findNavController().navigate(R.id.configurationFragment)
+        }
+
+        binding.btnStore.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.storeFragment)
         }
 
         //Toast.makeText(requireContext(), model.data.value.toString(), Toast.LENGTH_SHORT).show()
@@ -95,6 +100,12 @@ class HomeFragment : Fragment() {
             }
             model.showLevel = !model.showLevel
         }
+
+        //SHOW GIF
+        Glide.with(this)
+            .asGif()
+            .load("https://cdn.pixabay.com/animation/2024/02/17/02/20/02-20-10-821_512.gif") // Replace with your GIF URL or local resource
+            .into(binding.gifImageView)
     }
 
     override fun onDestroyView() {

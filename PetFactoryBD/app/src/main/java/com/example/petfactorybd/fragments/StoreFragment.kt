@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.petfactorybd.R
 import com.example.petfactorybd.databinding.FragmentStoreBinding
 
@@ -15,9 +16,6 @@ class StoreFragment : Fragment() {
 
     private var _binding: FragmentStoreBinding? = null
     private val binding get() = _binding!!
-    lateinit var mfd: NavDirections
-    private lateinit var navController: NavController
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,9 +27,12 @@ class StoreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.txtStore.setOnClickListener {
-            findNavController().navigate(R.id.storeFragment)
-        }
+
+        //SHOW GIF
+        Glide.with(this)
+            .asGif()
+            .load("https://cdn.pixabay.com/animation/2023/03/29/10/53/10-53-26-16_512.gif") // Replace with your GIF URL or local resource
+            .into(binding.gifImageView)
     }
 
     override fun onDestroyView() {
