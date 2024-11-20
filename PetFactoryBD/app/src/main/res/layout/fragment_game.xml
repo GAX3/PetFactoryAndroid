@@ -3,7 +3,7 @@
     android:id="@+id/game_area"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF8DC">
+    android:background="@drawable/sky">
 
     <TextView
         android:id="@+id/txtPoints"
@@ -12,6 +12,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:text="Puntos: 0" />
 
     <TextView
@@ -20,6 +21,7 @@
         android:layout_marginEnd="20dp"
         android:textSize="20dp"
         android:layout_gravity="end"
+        android:background="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="30" />
@@ -31,6 +33,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginHorizontal="20dp"
         android:visibility="gone"
+        android:background="#80FFFFFF"
         tools:visibility="visible">
 
         <ImageView

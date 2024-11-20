@@ -1,6 +1,7 @@
 package com.example.petfactorybd.fragments.game
 
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -32,6 +33,9 @@ class GameFragment : Fragment() {
     private val objects = mutableListOf<TextView>()
     private var gameRunning = true
     private lateinit var timer: CountDownTimer
+    private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var mediaPlayerSoundtrack: MediaPlayer
+
 
     //Coommon things
     private var _binding: FragmentGameBinding? = null
@@ -66,6 +70,14 @@ class GameFragment : Fragment() {
             }
             view.findNavController().popBackStack()
         }
+
+        // Initialize MediaPlayer with a sound resource
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.clap)
+        mediaPlayerSoundtrack = MediaPlayer.create(requireContext(), R.raw.happy)
+
+        mediaPlayerSoundtrack.start()
+
+
     }
 
     private fun startGame() {
@@ -113,7 +125,7 @@ class GameFragment : Fragment() {
         }
 
         val textView = TextView(requireContext()).apply {
-            text = "🎯"
+            text = "\uD83C\uDF88"
             textSize = 32f
             setTextColor(Color.RED)
             layoutParams = FrameLayout.LayoutParams(size, size)
@@ -125,6 +137,11 @@ class GameFragment : Fragment() {
             score++
             gameArea.removeView(textView)
             objects.remove(textView)
+            if (mediaPlayer.isPlaying) {
+                mediaPlayer.stop()
+                mediaPlayer.prepare() // Prepare it again to play the same sound
+            }
+            mediaPlayer.start() // Play the sound
             binding.txtPoints.text = "Puntos: ${score}"
         }
 
@@ -156,6 +173,8 @@ class GameFragment : Fragment() {
 
         binding.txtTime.visibility = View.GONE
         binding.txtPoints.visibility = View.GONE
+
+        mediaPlayerSoundtrack.stop()
         //Toast.makeText(requireContext(), "Juego terminado. Puntos finales: $score", Toast.LENGTH_LONG).show()
 
         // Optionally navigate to another screen or reset the game
@@ -165,6 +184,9 @@ class GameFragment : Fragment() {
         super.onDestroyView()
         if (::timer.isInitialized) {
             timer.cancel() // Ensure timer is canceled if the fragment is destroyed
+        }
+        if (this::mediaPlayer.isInitialized) {
+            mediaPlayer.release()
         }
     }
 }
