@@ -13,9 +13,11 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import com.example.petfactorybd.AppViewModel
 import com.example.petfactorybd.R
@@ -77,8 +79,14 @@ class GameFragment : Fragment() {
 
         mediaPlayerSoundtrack.start()
 
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity()) {
+            endGame(false)
+            findNavController().popBackStack()
+        }
+
 
     }
+
 
     private fun startGame() {
         score = 0
@@ -165,14 +173,16 @@ class GameFragment : Fragment() {
         }
     }
 
-    private fun endGame() {
+    private fun endGame(flag: Boolean = true) {
         timer.cancel() // Stop the timer if it's still running
         gameRunning = false
-        binding.cvResults.visibility = View.VISIBLE
-        binding.txtCoinsEarned.text = score.toString()
 
-        binding.txtTime.visibility = View.GONE
-        binding.txtPoints.visibility = View.GONE
+        if(flag){
+            binding.cvResults.visibility = View.VISIBLE
+            binding.txtCoinsEarned.text = score.toString()
+            binding.txtTime.visibility = View.GONE
+            binding.txtPoints.visibility = View.GONE
+        }
 
         mediaPlayerSoundtrack.stop()
         //Toast.makeText(requireContext(), "Juego terminado. Puntos finales: $score", Toast.LENGTH_LONG).show()
