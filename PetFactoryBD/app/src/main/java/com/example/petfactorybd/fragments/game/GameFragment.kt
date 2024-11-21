@@ -150,7 +150,7 @@ class GameFragment : Fragment() {
                 mediaPlayer.prepare() // Prepare it again to play the same sound
             }
             mediaPlayer.start() // Play the sound
-            binding.txtPoints.text = "Puntos: ${score}"
+            binding.txtPoints.text = "Puntos: $score"
         }
 
         objects.add(textView)

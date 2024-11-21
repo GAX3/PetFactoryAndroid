@@ -25,7 +25,7 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     fun loginUser(name: String, password: String, callback: (User?) -> Unit) {
-        Log.i("ViewModel", "${name}, ${password}")
+        Log.i("ViewModel", "$name, $password")
         viewModelScope.launch {
             val user = repository.loginUser(name, password)
             callback(user)

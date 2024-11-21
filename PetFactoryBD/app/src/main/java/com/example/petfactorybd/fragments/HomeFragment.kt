@@ -1,6 +1,5 @@
 package com.example.petfactorybd.fragments
 
-import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -34,7 +33,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -89,8 +88,7 @@ class HomeFragment : Fragment() {
             if(!model.showLevel){
                 viewModel.getData(model.data.value!!){ user ->
                     val div = user!!.level / 10
-                    val integerPart = div.toInt()
-                    val number = integerPart + 1
+                    val number = div + 1
                     binding.nivel.text = number.toString()
                 }
             }else{
